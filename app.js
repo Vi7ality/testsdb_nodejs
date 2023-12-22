@@ -3,14 +3,19 @@ const logger = require("morgan");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
+const testsRouter = require("./routes/api/tests");
+
 const app = express();
 
 dotenv.config();
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+// app.listen(3000, () => {
+//   console.log("Server is run");
+// });
+app.use("/api/tests", testsRouter);
+app.use((err, req, res, next) => {
+  const { status = 500, message = "Server error" } = err;
+  res.status(status).json(message);
 });
 
-app.listen(3000, () => {
-  console.log("Server is run");
-});
+module.exports = app;
