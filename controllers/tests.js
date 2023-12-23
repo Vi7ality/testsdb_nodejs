@@ -1,11 +1,35 @@
-const Test = require("../models/test.js");
+const { Test, schemas } = require("../models/test.js");
 const { ctrlWrapper } = require("../helpers/index");
 
 const getAll = async (req, res) => {
-  const result = await Test.find();
+  const result = await Test.find({}, "-createdAt -updatedAt");
+  res.json(result);
+};
+
+const getById = async (req, res, next) => {
+  const { id } = req.params;
+  const result = await Contact.findById(id);
+  if (!result) {
+    throw HttpError(404, "Not found");
+  }
+  res.json(result);
+};
+
+const updateCompleted = async (req, res) => {
+  const { error } = schemas.updateCompletedSchema.validate(req.body);
+  const { id } = req.params;
+  if (error) {
+    throw HttpError(400, "missing field favorite");
+  }
+  const result = await Contact.findByIdAndUpdate(id, req.body);
+  if (!result) {
+    throw HttpError(404, "Not found");
+  }
   res.json(result);
 };
 
 module.exports = {
   getAll: ctrlWrapper(getAll),
+  updateCompleted: ctrlWrapper(updateCompleted),
+  getById: ctrlWrapper(getById),
 };

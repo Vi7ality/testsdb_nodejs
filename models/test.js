@@ -1,4 +1,6 @@
 const { Schema, model } = require("mongoose");
+const { handleMongooseError } = require("../helpers/index");
+const Joi = require("joi");
 
 const testSchema = new Schema(
   {
@@ -20,6 +22,14 @@ const testSchema = new Schema(
 
 testSchema.post("save", handleMongooseError);
 
+const updateCompletedSchema = Joi.object({
+  isCopmlited: Joi.boolean().required(),
+});
+
+const schemas = {
+  updateCompletedSchema,
+};
+
 const Test = model("test", testSchema);
 
-module.exports = Test;
+module.exports = { Test, schemas };
