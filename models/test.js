@@ -18,6 +18,8 @@ const testSchema = new Schema(
   { versionKey: false, timestamps: true }
 );
 
+testSchema.post("save", handleMongooseError);
+
 const Test = model("test", testSchema);
 
 module.exports = Test;
