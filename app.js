@@ -9,9 +9,6 @@ const app = express();
 
 dotenv.config();
 
-// app.listen(3000, () => {
-//   console.log("Server is run");
-// });
 app.use("/api/tests", testsRouter);
 app.use((err, req, res, next) => {
   const { status = 500, message = "Server error" } = err;
