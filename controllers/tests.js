@@ -17,11 +17,12 @@ const getById = async (req, res, next) => {
 
 const updateCompleted = async (req, res) => {
   const { error } = schemas.updateCompletedSchema.validate(req.body);
-  const { id } = req.params;
   if (error) {
-    throw HttpError(400, "missing field isCompleted");
+    throw HttpError(400, "missing field");
   }
-  const result = await Test.findByIdAndUpdate(id, req.body);
+  const { id } = req.params;
+
+  const result = await Test.findByIdAndUpdate(id, req.body, { new: true });
   if (!result) {
     throw HttpError(404, "Not found");
   }

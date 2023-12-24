@@ -23,7 +23,8 @@ const testSchema = new Schema(
 testSchema.post("save", handleMongooseError);
 
 const updateCompletedSchema = Joi.object({
-  isCopmlited: Joi.boolean().required(),
+  isCompleted: Joi.boolean().required(),
+  mark: Joi.string().required(),
 });
 
 const schemas = {
