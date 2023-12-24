@@ -1,5 +1,5 @@
 const { Test, schemas } = require("../models/test.js");
-const { ctrlWrapper } = require("../helpers/index");
+const { ctrlWrapper, HttpError } = require("../helpers/index");
 
 const getAll = async (req, res) => {
   const result = await Test.find({}, "-createdAt -updatedAt");
@@ -16,11 +16,15 @@ const getById = async (req, res, next) => {
 };
 
 const updateCompleted = async (req, res) => {
+  const { id } = req.params;
+  const test = await Test.findById(id);
+  if (String((test.isCompleted = true))) {
+    throw HttpError(409, "You cannot modify completed test");
+  }
   const { error } = schemas.updateCompletedSchema.validate(req.body);
   if (error) {
     throw HttpError(400, "missing field");
   }
-  const { id } = req.params;
 
   const result = await Test.findByIdAndUpdate(id, req.body, { new: true });
   if (!result) {
