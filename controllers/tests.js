@@ -8,7 +8,7 @@ const getAll = async (req, res) => {
 
 const getById = async (req, res, next) => {
   const { id } = req.params;
-  const result = await Contact.findById(id);
+  const result = await Test.findById(id);
   if (!result) {
     throw HttpError(404, "Not found");
   }
@@ -19,9 +19,9 @@ const updateCompleted = async (req, res) => {
   const { error } = schemas.updateCompletedSchema.validate(req.body);
   const { id } = req.params;
   if (error) {
-    throw HttpError(400, "missing field favorite");
+    throw HttpError(400, "missing field isCompleted");
   }
-  const result = await Contact.findByIdAndUpdate(id, req.body);
+  const result = await Test.findByIdAndUpdate(id, req.body);
   if (!result) {
     throw HttpError(404, "Not found");
   }

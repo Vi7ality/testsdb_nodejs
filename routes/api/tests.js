@@ -3,8 +3,6 @@ const router = express.Router();
 const ctrl = require("../../controllers/tests");
 const { isValidId } = require("../../middlewares/index");
 
-const { HttpError } = require("../../helpers/index");
-
 const tests = require("../../models/test");
 
 router.get("/", ctrl.getAll);
