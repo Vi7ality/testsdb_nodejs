@@ -1,4 +1,4 @@
-const { User, schemas } = require("../models/user");
+const { User } = require("../models/user");
 const { HttpError, ctrlWrapper } = require("../helpers");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -6,12 +6,7 @@ require("dotenv").config();
 const { SECRET_KEY } = process.env;
 
 const register = async (req, res) => {
-  const { error } = schemas.registerSchema.validate(req.body);
   const { email, password } = req.body;
-
-  if (error) {
-    throw HttpError(400, error.message);
-  }
 
   const user = await User.findOne({ email });
 
