@@ -18,7 +18,7 @@ const getById = async (req, res, next) => {
 const updateCompleted = async (req, res) => {
   const { id } = req.params;
   const test = await Test.findById(id);
-  if (String((test.isCompleted = true))) {
+  if (test.isCompleted === true) {
     throw HttpError(409, "You cannot modify completed test");
   }
   const { error } = schemas.updateCompletedSchema.validate(req.body);
