@@ -4,14 +4,14 @@ const ctrl = require("../../controllers/tests");
 const { isValidId } = require("../../middlewares/index");
 const { validateBody } = require("../../middlewares/index");
 const schemas = require("../../models/test");
-const { authentificate } = require("../../middlewares/index");
+const { authenticate } = require("../../middlewares/index");
 
 router
-  .get("/", authentificate, ctrl.getAll)
-  .get("/:id", authentificate, isValidId, ctrl.getById)
+  .get("/", authenticate, ctrl.getAll)
+  .get("/:id", authenticate, isValidId, ctrl.getById)
   .patch(
     "/:id/completed",
-    authentificate,
+    authenticate,
     isValidId,
     validateBody(schemas.updateCompletedSchema),
     ctrl.updateCompleted
