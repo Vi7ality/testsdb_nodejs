@@ -3,8 +3,8 @@ const logger = require("morgan");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
-const testsRouter = require("./routes/api/tests");
-const authRouter = require("./routes/api/auth");
+const { testsRouter } = require("./routes/api/index");
+const { authRouter } = require("./routes/api/index");
 
 const app = express();
 

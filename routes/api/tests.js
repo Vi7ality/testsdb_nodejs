@@ -1,13 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const ctrl = require("../../controllers/tests");
+const { tests: ctrl } = require("../../controllers/index");
 const { isValidId } = require("../../middlewares/index");
 const { validateBody } = require("../../middlewares/index");
-const schemas = require("../../models/test");
+const {
+  test: { schemas },
+} = require("../../models/index");
 const { authenticate } = require("../../middlewares/index");
 
 router
-  .get("/", authenticate, ctrl.getAll)
+  .get("/", authenticate, ctrl.getAllAssigned)
+  .get("/all", authenticate, ctrl.getAll)
   .get("/:id", authenticate, isValidId, ctrl.getById)
   .patch(
     "/:id/completed",

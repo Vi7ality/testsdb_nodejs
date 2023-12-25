@@ -3,9 +3,11 @@ const express = require("express");
 const router = express.Router();
 
 const { validateBody } = require("../../middlewares/index");
-const { schemas } = require("../../models/user");
+const {
+  user: { schemas },
+} = require("../../models/index");
 
-const ctrl = require("../../controllers/auth");
+const { auth: ctrl } = require("../../controllers");
 const { authenticate } = require("../../middlewares/index");
 
 router
