@@ -7,7 +7,8 @@ const schemas = require("../../models/test");
 const { authenticate } = require("../../middlewares/index");
 
 router
-  .get("/", authenticate, ctrl.getAll)
+  .get("/", authenticate, ctrl.getAllAssigned)
+  .get("/all", authenticate, ctrl.getAll)
   .get("/:id", authenticate, isValidId, ctrl.getById)
   .patch(
     "/:id/completed",

@@ -4,7 +4,7 @@ const Joi = require("joi");
 
 const testSchema = new Schema(
   {
-    title: {
+    name: {
       type: String,
       required: true,
     },
@@ -14,6 +14,11 @@ const testSchema = new Schema(
     },
     isCompleted: {
       type: Boolean,
+      required: true,
+    },
+    assigned: {
+      type: String,
+      ref: "user",
       required: true,
     },
   },
