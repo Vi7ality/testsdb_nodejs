@@ -6,12 +6,6 @@ const getAll = async (req, res) => {
   res.json(result);
 };
 
-const getAllAssigned = async (req, res) => {
-  const userId = String(req.user._id);
-  const result = await Test.find({ assigned: userId }, "-createdAt -updatedAt");
-  res.json(result);
-};
-
 const getById = async (req, res) => {
   const { id } = req.params;
   const result = await Test.findById(id);
@@ -41,7 +35,6 @@ const updateCompleted = async (req, res) => {
 
 module.exports = {
   getAll: ctrlWrapper(getAll),
-  getAllAssigned: ctrlWrapper(getAllAssigned),
   updateCompleted: ctrlWrapper(updateCompleted),
   getById: ctrlWrapper(getById),
 };
