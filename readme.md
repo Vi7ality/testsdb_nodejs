@@ -18,6 +18,6 @@ Token is required:
 - /tests/completed - PATCH completed test.
 
 ## Test 
-Use autorisation details
+To get assigned "tests" to user use autorisation details:
 - email: test@test.co
 - password: test123
