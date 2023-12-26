@@ -16,3 +16,8 @@ Token is required:
 - /tests - GET all tests, that assigned to the current user;
 - /tests/:id - GET test with id;
 - /tests/completed - PATCH completed test.
+
+##Test login
+Use autorisation details
+- email: test@test.co
+- password: test123
