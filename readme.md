@@ -6,7 +6,7 @@
 - `npm lint:fix` &mdash; eslint checkout with automatical simple bag fix.
 
 ## Routes:
-
+Main URL: https://testsdb-api.onrender.com/api
 - /auth/register - PUT, register new user;
 - /auth/login - PUT, login user and get token;
 - /auth/current - GET, get email of current user;
