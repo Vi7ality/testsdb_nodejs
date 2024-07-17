@@ -1,4 +1,4 @@
-const { ctrlWrapper } = require("../../helpers/index");
+const { ctrlWrapper } = require("../../middlewares/index");
 
 const getAll = require("./getAll");
 const getAllAssigned = require("./getAllAssigned");
